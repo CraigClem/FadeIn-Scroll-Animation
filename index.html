@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/dist/output.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="p-4">
+
+        <div class="h-screen bg-gray-300 p-4">Hello</div>
+        <div class="h-screen bg-gray-600 p-4 my-4 js-show-on-scroll">Hello</div>
+
+        <div class="grid grid-cols-2 gap-4 my-4">
+            <div class="bg-red-500 p-4 h-64 text-white js-show-on-scroll">
+                <h1>Hello world</h1>
+            </div>
+
+            <div class="bg-green-500 p-4 h-64 text-white js-show-on-scroll">
+                <h1>Hello world</h1>
+            </div>
+        </div>
+
+        <div class="h-screen bg-gray-300 p-4 my-4 js-show-on-scroll">Hello</div>
+        <div class="h-screen bg-gray-300 p-4 js-show-on-scroll">Hello</div>
+
+    </div>
+    <script>
+        const callback = function (entries) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("animate-fadeIn");
+                } else {
+                    entry.target.classList.remove("animate-fadeIn");
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback);
+
+        const targets = document.querySelectorAll(".js-show-on-scroll");
+        targets.forEach(function (target) {
+            target.classList.add("opacity-0");
+            observer.observe(target);
+        });
+
+    </script>
+</body>
+
+</html>
